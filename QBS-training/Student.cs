@@ -367,12 +367,7 @@ namespace QBS_training
             int y;
         }
 
-        public void gethubb() {
-            
-            
-
-        }
-
+      
 
     }
 }
