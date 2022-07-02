@@ -4,107 +4,136 @@ using System.Text;
 
 namespace QBS_training
 {
-    class Student
-    {
-        string _name;
-        Subject _subjects=new Subject();
+    class School {
+        public string schoolName { get; set; }
+        List<ClassRoom> CRList = new List<ClassRoom>();
+        public School(string schoolName)  { this.schoolName = schoolName; }
 
-        /// <summary>
-        /// this methode to set and get value of Student name
-        /// </summary
-        public string name
+        public void addClassRoom(string classRoomName) {
+            ClassRoom newClassRoom = new ClassRoom(classRoomName);
+            CRList.Add(newClassRoom);
+        }
+
+        public void deleteClassRoom(string classRoomName) {
+            CRList.RemoveAt(indexOfCRList(classRoomName));
+
+        }
+
+        public void addSubjectToClassRoom(string classRoomName,string subjectName) 
         {
-            get { return _name; }
-            set { _name = value; }
+            ClassRoom CR = CRList[indexOfCRList(classRoomName)];
+            CR.subjects.addSbj(subjectName);
+        
         }
 
-        /// <summary>
-        /// this methode to set and get value of Student subjects
-        /// </summary
-        public Subject subjects {
-            get { return _subjects; }
-            set { foreach (Subject x in value.sbjList  ) 
-                    {_subjects.sbjList = x.sbjList;} }
-        }
-
-        /// <summary>
-        /// This constructor sets the name's empty string as the default value
-        /// </summary>
-        public Student(){
-            name="";
-            subjects = new Subject();
-        }
-
-        /// <summary>
-        /// This constructor receives the name and assigns it to the name
-        /// </summary>
-        /// <param name="Name"></param>
-        public Student(string Name)
+        public void addSubjectToAllClassRoom(string subjectName) 
         {
-            name = Name;
-            subjects = new Subject();
+            foreach (ClassRoom x in CRList) { x.subjects.addSbj(subjectName); }
         }
 
-        /// <summary>
-        /// This constructor receives the name and list of subject and assigns it to the name and subject member
-        /// </summary>
-        /// <param name="Name"></param>
-        public Student(string Name,List<Subject> sbj)
+        public void deleteSubjectFromClassRoom(string classRoomName, string subjectName) 
         {
-            name = Name;
-            subjects = new Subject();
-            foreach (Subject x in sbj) {subjects.addSbj(x.sbjName,x.mark);}
+            ClassRoom CR = CRList[indexOfCRList(classRoomName)];
+            CR.subjects.deleteSbj(subjectName);
+
         }
 
-        /// <summary>
-        /// This method fills in students' mark by asking the user (Console.ReadLine())
-        /// </summary>
-        public void fill()
+        public void deleteSubjectFromAllClassRoom(string subjectName) 
+        { foreach (ClassRoom x in CRList) { x.subjects.deleteSbj(subjectName); } }
+
+        public void addStudent(string studentName,string classRoomName) {
+            CRList[indexOfCRList(classRoomName)].addStudent(studentName);
+        }
+
+        public void deleteStudent(string studentName,string classRoomName) {
+            CRList[indexOfCRList(classRoomName)].deleteStudend(studentName);
+        }
+
+        public void editStudentName(string studentName,string classRoomName,string newStudentName) {
+            Student toEdit=CRList[indexOfCRList(classRoomName)].getStudent(studentName);
+            toEdit.name = newStudentName;
+        }
+
+        public void editStudentMark(string studentName, string classRoomName, string subjectName,int subjectMark)
         {
-            Console.Write("Enter the number of subject to be added : ");
-            int numOfSbj = Convert.ToInt32(Console.ReadLine());
+            Student toEdit = CRList[indexOfCRList(classRoomName)].getStudent(studentName);
+            toEdit.setMarkOfSubject(subjectName,subjectMark);
+        }
 
-            for (int i = 1; i <= numOfSbj; i++)
-            {
-                Console.Write("Enter the name of subject " + i + " : ");
-                string sbjName = Console.ReadLine();
-                Console.Write("Do you want to add a mark ? y/n  ");
-                string decision = Console.ReadLine();
-                if (decision == "n")
-                    addSubject(sbjName);
-                else if (decision == "y")
-                {
-                    Console.Write("Enter the mark : ");
-                    int mark = Convert.ToInt32(Console.ReadLine());
-                    addSubject(sbjName,mark);
-                }
+        public  String printClassRoomDetails(string classRoom) {
+            return "classroom name : " + CRList[indexOfCRList(classRoom)].CRname + "\n" +
+            "=================================================================" +
+            "subject in this classroom : \n" + CRList[indexOfCRList(classRoom)].subjects.sbjTitle() + "\n" +
+            "=================================================================" +
+            "student in this classroom : \n" + CRList[indexOfCRList(classRoom)].studentListName();
+            
 
+        }
+
+        public string studentDatails(string studentName,string classRoomName ) {
+            Student st = CRList[indexOfCRList(classRoomName)].getStudent(studentName);
+            ClassRoom cr = CRList[indexOfCRList(classRoomName)];
+            return 
+
+                "\n=====================================================================\n"+
+                "student information"+
+                "\n=====================================================================\n"+
+                "This student's name is "+st.name+"studying in classroom"+cr.CRname+
+
+                "\n=====================================================================\n"+
+                "Student marks"+
+                "\n=====================================================================\n"+
+                st.titel()+"\n"+
+                st.print()
+                ;
+        }
+        public int indexOfCRList(string classRoomName) {
+            int i;
+
+            for (i = 0; i < CRList.Count; i++)
+                if (CRList[i].CRname == classRoomName)
+                    return i;
+
+            return -1;
+        }
+
+        
+
+
+
+
+
+
+    }
+
+    class Student {
+        public string name { get; set; }
+        public Subject subjects { get; set; }
+
+        public Student(String name,Subject subjects) {
+                this.name = name;
+                this.subjects = subjects;
             }
-            //foreach (subject x in subjects.sbjList)
-            //{
-            //    Console.Write("enter degree of " +x.sbjName + " : ");
-            //    x.mark = Convert.ToInt32(Console.ReadLine());
-            //}
-        }
 
         /// <summary>
         /// This method calculates the student's average based on the total marks divided by the number of subjects return it
         /// </summary>
         /// <returns></returns>
-        public double Avereage() {   return ((double)Total() / subjects.length());  }
+        public double Avereage() { return ((double)Total() / subjects.length()); }
 
         /// <summary>
         /// This method calculates the s total marks and return it
         /// </summary>
         /// <returns></returns>
-        public int Total() { return subjects.totalMarks() ;}
+        public int Total() { return subjects.totalMarks(); }
 
         /// <summary>
-        /// This method returns the student's assessment with symbols as a string 
+        /// This method returns the student's assessment with symbols as a string
         /// </summary>
         /// <returns></returns>
-        public string Grade(){
-            int grade =Convert.ToInt32(Avereage());
+        public string Grade()
+        {
+            int grade = Convert.ToInt32(Avereage());
 
             if (grade >= 85 && grade <= 100)
                 return "HD";
@@ -116,29 +145,6 @@ namespace QBS_training
                 return "HD";
             else
                 return "";
-        }
-
-        /// <summary>
-        /// This method return Student name,marks,Total,Avereage and Grade of subject as a string
-        /// </summary>
-        /// <returns></returns>
-        public string print() {
-
-            string result = name;
-            foreach (Subject x in subjects.sbjList) 
-                {result += "    |    "+x.mark; }
-            result+= "    |    " + Total() + "    |    " + Avereage().ToString("0.#####") + "    |    " + Grade(); ;
-            
-            return result;
-        }
-
-        /// <summary>
-        /// This method return "name",subject name,"Total","Avereage" and "Grade" of subject as a string
-        /// </summary>
-        /// <returns></returns>
-        public string titel() 
-        {
-            return "name"+subjects.sbjTitle()+ "    |    " + "Total" + "    |    " + "Avereage" + "    |    " + "Grade";
         }
 
         /// <summary>
@@ -157,36 +163,19 @@ namespace QBS_training
 
             foreach (Student x in std)
             {
-                if (x.Avereage() > max) {   max = x.Avereage();   stdName= x.name;  }
+                if (x.Avereage() > max) { max = x.Avereage(); stdName = x.name; }
             }
 
             return "topper student name : " + stdName + "  who's average is maximum : " + max.ToString("0.#####");
         }
 
         /// <summary>
-        /// This method add subject to specific student 
-        /// and receive the subject name and set sbjtName as the subject name
-        /// and set zero as the default value for the mark
+        ///this method return true if list is empty
+        ///and return false if not
         /// </summary>
-        /// <param name="subjectName">set sbjtName as the subject name</param>
-        public void addSubject(string sbjtName)
-        {
-            subjects.addSbj(sbjtName);
-            
-        }
-
-        /// <summary>
-        /// This method add subject to specific student 
-        /// and receive the subject name and set sbjtName as the subject name
-        /// and set sbjMark as the subject mark
-        /// </summary>
-        /// <param name="sbjtName">set sbjtName as the subject name</param>
-        /// <param name="sbjMark">set sbjMark as the subject mark</param>
-        public void addSubject(string sbjName,int sbjMark)
-        {   //Error
-            
-            subjects.addSbj(sbjName,sbjMark);
-        }
+        /// <param name="std">the List you wish to determine if empty</param>
+        /// <returns></returns>
+        public static bool isEmptyList(List<Student> std) { return std == null; }
 
         /// <summary>
         ///  This method edit subject mark to new value
@@ -195,25 +184,37 @@ namespace QBS_training
         /// </summary>
         /// <param name="sbjName">subject whose value is to be changed</param>
         /// <param name="mark">set sbjMark as the new value of subject mark</param>
-        public void setMarkOfSubject(string sbjName,int mark) {
+        public void setMarkOfSubject(string sbjName, int mark)
+        {
             subjects.editMark(sbjName, mark);
         }
 
         /// <summary>
-        ///this method return true if list is empty 
-        ///and return false if not
+        /// This method return Student name,marks,Total,Avereage and Grade of subject as a string
         /// </summary>
-        /// <param name="std">the List you wish to determine if empty</param>
         /// <returns></returns>
-        public static bool isEmptyList(List<Student> std) { return std == null; }
+        public string print()
+        {
+
+            string result = name;
+            foreach (Subject x in subjects.sbjList)
+            { result += "  |  " + x.mark; }
+            result += "  |  " + Total() + "  |  " + Avereage().ToString("0.#####") + "  |  " + Grade();
+
+            return result;
+        }
 
         /// <summary>
-        /// Determine if this object is empty
+        /// This method return "name",subject name,"Total","Avereage" and "Grade" of subject as a string
         /// </summary>
         /// <returns></returns>
-        public bool isEmpty() {
-            return name == "" && subjects == null;
+        public string titel()
+        {
+            return "name" + subjects.sbjTitle() + "    |    " + "Total" + "    |    " + "Avereage" + "    |    " + "Grade";
         }
+
+
+
 
 
     }
@@ -222,6 +223,7 @@ namespace QBS_training
 
         string _Name;
         int _mark;
+
         List<Subject> _sbjlist = new List<Subject>();
         public Subject() { }
 
@@ -238,17 +240,17 @@ namespace QBS_training
         /// <summary>
         /// this methode to set and get value of subject name
         /// </summary>
-        public string sbjName { get => _Name; set => _Name = value;}
+        public string sbjName { get; set;}
 
         /// <summary>
         /// this methode to set and get value of subject mark
         /// </summary>
-        public int mark{ get => _mark; set =>_mark = value; }
+        public int mark{ get; set; }
 
         /// <summary>
         /// this methode to set and get value of subject list
         /// </summary>
-        public List<Subject> sbjList { get => _sbjlist; set => _sbjlist = value; }
+        public List<Subject> sbjList { get; set; }
 
         /// <summary>
         /// It adds a subject and the name of the subject =sbjName and sets the zero mark as the default value
@@ -274,7 +276,7 @@ namespace QBS_training
         /// Deletes the subject based on the name
         /// </summary>
         /// <param name="sbjName">The name of the subject to be removed</param>
-        public void removeSbj(string sbjName) {
+        public void deleteSbj(string sbjName) {
 
             if (isExist(sbjName))
                 Console.WriteLine("this subjects does not exist");
@@ -342,7 +344,7 @@ namespace QBS_training
         /// <returns></returns>
         public string sbjTitle() {
             string result = "";
-            foreach (Subject x in sbjList) { result += "    |    " + x.sbjName; }
+            foreach (Subject x in sbjList) { result += "  |  " + x.sbjName; }
             return result;
         }
 
@@ -350,23 +352,81 @@ namespace QBS_training
 
     }
 
-    class Science {
-        string _name;
-        Subject _subjects = new Subject();
-
-        public Science() { 
+    class ClassRoom {
+        //Subject _subjects = new Subject();
+        //List<Student> _students = new List<Student>();
+        public ClassRoom() {
+            CRname = "";
         }
 
-        public Science(string name)
+        public ClassRoom(string classRoomName)
         {
+            CRname = classRoomName;
         }
 
-        public Science(string name, List<Subject> subject)
+        public ClassRoom(string name, List<Subject> subjects)
         {
+            CRname = name;
+            this.subjects.sbjList = subjects;
+        }
+
+        /// <summary>
+        /// this methode to set and get value of Science name
+        /// </summary
+        public string CRname{get;set;}
+
+        /// <summary>
+        /// this methode to set and get value of Science subjects
+        /// </summary
+        public Subject subjects{get;set;}
+
+        public List<Student> students { get; set; }
+
+        /// <summary>
+        /// This method add subject to specific student 
+        /// and receive the subject name and set sbjtName as the subject name
+        /// and set sbjMark as the subject mark
+        /// </summary>
+        /// <param name="sbjtName">set sbjtName as the subject name</param>
+        /// <param name="sbjMark">set sbjMark as the subject mark</param>
+
+        public void addStudent(string studentName ) {
+            Student newStd = new Student(studentName,subjects);
+            students.Add(newStd);
+
+        }
+
+        public void deleteStudend(string studentName) {
+            students.RemoveAt(indexOfStList(studentName));
+        }
+
+        public int indexOfStList(string studentName) {
+            int i ;
+            for (i=0; i < STListLength(); i++)
+                if (students[i].name == studentName)
+                    return i;
+            return -1;
             
         }
 
-      
 
+        public int STListLength() {
+            return students.Count;
+        }
+
+        public Student getStudent(string studentName) {
+            return students[indexOfStList(studentName)];
+        }
+
+        public string studentListName() {
+
+            string result = "";
+            foreach (Student x in students) { result += "  |  " + x.name; }
+            return result;
+        }
+        
+
+
+        
     }
 }
