@@ -363,8 +363,7 @@ namespace QBS_training
 
         public Science(string name, List<Subject> subject)
         {
-            int x;
-            int y;
+            
         }
 
       
