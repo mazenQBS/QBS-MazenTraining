@@ -363,9 +363,18 @@ namespace QBS_training
 
         public Science(string name, List<Subject> subject)
         {
+            int x;
+            int y;
         }
 
+        public void gethubb() {
+            int x;
+            int y;
+            int x1;
+            int y1;
+            
 
+        }
 
 
     }
