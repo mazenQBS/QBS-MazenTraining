@@ -368,10 +368,7 @@ namespace QBS_training
         }
 
         public void gethubb() {
-            int x;
-            int y;
-            int x1;
-            int y1;
+            
             
 
         }
