@@ -375,6 +375,10 @@ namespace QBS_training
         Subject _subjects;
         string _CRname;
         List<Student> students;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public ClassRoom() {
             CRname = "";
             _subjects=  new Subject();
