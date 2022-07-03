@@ -27,6 +27,7 @@ namespace QBS_training
 
         public void addSubjectToClassRoom(string classRoomName,string subjectName) 
         {
+           
             ClassRoom CR = CRList[indexOfCRList(classRoomName)];
             CR.subjects.addSbj(subjectName);
         
@@ -39,7 +40,7 @@ namespace QBS_training
 
         public void deleteSubjectFromClassRoom(string classRoomName, string subjectName) 
         {
-            ClassRoom CR = CRList[indexOfCRList(classRoomName)];
+            ClassRoom CR = CRList[indexOfCRList(classRoomName)];            
             CR.subjects.deleteSbj(subjectName);
 
         }
@@ -96,9 +97,10 @@ namespace QBS_training
         public int indexOfCRList(string classRoomName) {
             int i;
 
-            for (i = 0; i < CRList.Count; i++)
+            for (i = 0; i < CRList.Count; i++) {                                            
                 if (CRList[i].CRname == classRoomName)
-                    return i;
+                   return i;
+               } 
 
             return -1;
         }
@@ -295,11 +297,11 @@ namespace QBS_training
         /// <param name="sbjName">The name of the subject to be removed</param>
         public void deleteSbj(string sbjName) {
 
-            if (isExist(sbjName))
+            if (!isExist(sbjName))
                 Console.WriteLine("this subjects does not exist");
             else
                 sbjList.RemoveAt(indexOf(sbjName));
-        }
+        }//error
 
         /// <summary>
         /// return the size of subject list 
@@ -317,9 +319,9 @@ namespace QBS_training
             int i;
 
             for (i = 0; i < sbjList.Count; i++)
-                if (sbjList[i].sbjName == sbjName)
-                    return i;
-
+            {
+                if (sbjList[i].sbjName == sbjName) {return i;}
+            }
             return -1;
         }
 

@@ -26,7 +26,7 @@ namespace QBS_training
 
         static string decisionMassageStudent()
         {
-            return  "press 1 to add class Student\n" +
+            return  "press 1 to add Student\n" +
                     "press 2 to delete Student\n" +
                     "press 3 to Edit Student name\n" +
                     "press 4 to Edit Student mark\n" +
@@ -64,8 +64,6 @@ namespace QBS_training
             s1.addClassRoom("a");
             s1.addSubjectToClassRoom("a","math");
             s1.addStudent("mazen","a");
-
-            
 
 
             ///////////////////////////////////////////////////////////////////////
@@ -114,7 +112,7 @@ namespace QBS_training
                                     Console.WriteLine("Enter Name Of subject To Add");
                                     string subjectNameToAdd = Console.ReadLine();
 
-                                    s1.addSubjectToClassRoom(subjectNameToAdd, classRoomNameToAddSubject);
+                                    s1.addSubjectToClassRoom(classRoomNameToAddSubject,subjectNameToAdd);
 
                                     break;//end case 3
 
