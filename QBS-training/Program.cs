@@ -234,7 +234,7 @@ namespace QBS_training
                                     Console.Write("Enter student name : ");
                                     string studentNameToPrint = Console.ReadLine();
 
-                                    Console.WriteLine(s1.studentDatails(studentNameToPrint, classRoomToPrint));
+                                    Console.WriteLine(s1.printstudentDatails(studentNameToPrint, classRoomToPrint));
 
                                     break;//end case 4
                             }

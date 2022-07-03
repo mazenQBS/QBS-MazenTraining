@@ -5,9 +5,15 @@ using System.Text;
 namespace QBS_training
 {
     class School {
-        public string schoolName { get; set; }
-        List<ClassRoom> CRList = new List<ClassRoom>();
-        public School(string schoolName)  { this.schoolName = schoolName; }
+
+        List<ClassRoom> CRList;
+        string name;
+        public string schoolName { get { return name; } set { name = value; } }
+        
+        public School(string schoolName)  
+        { 
+            this.schoolName = schoolName;
+            CRList= new List<ClassRoom>(); }
 
         public void addClassRoom(string classRoomName) {
             ClassRoom newClassRoom = new ClassRoom(classRoomName);
@@ -70,7 +76,7 @@ namespace QBS_training
 
         }
 
-        public string studentDatails(string studentName,string classRoomName ) {
+        public string printstudentDatails(string studentName,string classRoomName ) {
             Student st = CRList[indexOfCRList(classRoomName)].getStudent(studentName);
             ClassRoom cr = CRList[indexOfCRList(classRoomName)];
             return 
@@ -78,7 +84,7 @@ namespace QBS_training
                 "\n=====================================================================\n"+
                 "student information"+
                 "\n=====================================================================\n"+
-                "This student's name is "+st.name+"studying in classroom"+cr.CRname+
+                "This student's name is "+st.name+" studying in classroom "+cr.CRname+
 
                 "\n=====================================================================\n"+
                 "Student marks"+
@@ -107,8 +113,10 @@ namespace QBS_training
     }
 
     class Student {
-        public string name { get; set; }
-        public Subject subjects { get; set; }
+        string _name;
+        Subject _subjects;
+        public string name { get { return _name; } set { _name = value; } }
+        public Subject subjects { get { return _subjects; } set { _subjects = value; } }
 
         public Student(String name,Subject subjects) {
                 this.name = name;
@@ -224,28 +232,37 @@ namespace QBS_training
         string _Name;
         int _mark;
 
-        public List<Subject> sbjList = new List<Subject>();
-        public Subject() { }
+        public List<Subject> sbjList ;
+        public Subject() 
+        { 
+            sbjList = new List<Subject>();
+            _Name = "";
+            _mark = 0;
+        }
 
         /// <summary>
         /// This constructor receives the name of the subject and sets the zero as the default value
         /// </summary>
         /// <param name="sbjName">name of the subject</param>
         public Subject(string sbjName)
-        {
+        {   
+            sbjList = new List<Subject>();
             _Name = sbjName;
             mark = 0;
+            
         }
 
         /// <summary>
         /// this methode to set and get value of subject name
         /// </summary>
-        public string sbjName { get; set;}
+        public string sbjName {
+            get { return _Name; } set { _Name = value; }
+        }
 
         /// <summary>
         /// this methode to set and get value of subject mark
         /// </summary>
-        public int mark{ get; set; }
+        public int mark{ get { return _mark; } set { _mark = value; } }
 
         /// <summary>
         /// this methode to set and get value of subject list
@@ -353,32 +370,39 @@ namespace QBS_training
     }
 
     class ClassRoom {
-        public Subject subjects = new Subject();
-        List<Student> students = new List<Student>();
+        Subject _subjects;
+        string _CRname;
+        List<Student> students;
         public ClassRoom() {
             CRname = "";
+            _subjects=  new Subject();
+            students = new List<Student>();
         }
 
         public ClassRoom(string classRoomName)
         {
             CRname = classRoomName;
+            _subjects=  new Subject();
+            students = new List<Student>();
         }
 
         public ClassRoom(string name, List<Subject> subjects)
         {
-            CRname = name;
+            CRname = name;            
+            _subjects=  new Subject();
+            students = new List<Student>();
             this.subjects.sbjList = subjects;
         }
 
         /// <summary>
         /// this methode to set and get value of Science name
         /// </summary
-        public string CRname{get;set;}
+        public string CRname{ get { return _CRname; } set { _CRname = value; } }
 
         /// <summary>
         /// this methode to set and get value of Science subjects
         /// </summary
-        //public Subject subjects{get;set;}
+        public Subject subjects { get { return _subjects;  } set { _subjects = value; } }
 
         //public List<Student> students { get; set; }
 
