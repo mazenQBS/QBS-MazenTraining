@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace QBS_training
+namespace QBS_training_School
 {
     class School {
 
@@ -15,11 +15,19 @@ namespace QBS_training
             this.schoolName = schoolName;
             CRList= new List<ClassRoom>(); }
 
+        /// <summary>
+        /// This method is adding a classroom to the school
+        /// </summary>
+        /// <param name="classRoomName">The name of the class to be added</param>
         public void addClassRoom(string classRoomName) {
             ClassRoom newClassRoom = new ClassRoom(classRoomName);
             CRList.Add(newClassRoom);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="classRoomName"></param>
         public void deleteClassRoom(string classRoomName) {
             CRList.RemoveAt(indexOfCRList(classRoomName));
 

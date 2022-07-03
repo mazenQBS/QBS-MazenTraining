@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using QBS_training_School;
+using QBS_training_restaurant;
 
 namespace QBS_training
 {
@@ -51,12 +53,21 @@ namespace QBS_training
 
               ;
         }
-        static void Main(string[] args)
-        {
 
+        static void printChefType(Chef chef) {
 
+            Console.WriteLine(chef.PrintChefOfTheOrder());
+        
+        }
 
+        static string typeOfFood() {
+            return "1-italian food\n 2-indian food\n 3-arabic food\n";
+        }
 
+        static void toStudent() { 
+        
+        
+         
 
             School s1 = new School("QBS");
 
@@ -300,7 +311,53 @@ namespace QBS_training
 
              */
 
+        
+        
+        
+        
+        
+        }
 
+        static void toChef() {
+
+            italianChef chef1 = new italianChef();
+
+            indianChef chef2 = new indianChef();
+
+            arabicChef chef3 = new arabicChef();
+
+
+            bool flag = true;
+            while (flag)
+            {
+
+                Console.WriteLine("Choose a type of food\n " + typeOfFood());
+                int des = Convert.ToInt32(Console.ReadLine());
+                switch (des)
+                {
+
+                    case 1:
+                        printChefType(chef1);
+                        break;
+                    case 2:
+                        printChefType(chef2);
+                        break;
+                    case 3:
+                        printChefType(chef3);
+                        break;
+                }
+                Console.WriteLine(decisionMassageMainLoop());
+                int des2 = Convert.ToInt32(Console.ReadLine());
+                flag = des2 == 1;
+
+            }
+
+        }
+
+        static void Main(string[] args)
+        {
+
+            toChef();
 
 
 
