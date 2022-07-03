@@ -76,7 +76,7 @@ namespace QBS_training
                         while (d2Flag)
                         {
                             Console.WriteLine(decisionMassageClassRoom());
-                        int decision2 = Convert.ToInt32(Console.ReadLine());
+                            int decision2 = Convert.ToInt32(Console.ReadLine());
                         
                             switch (decision2)
                             {
@@ -145,9 +145,11 @@ namespace QBS_training
 
 
                             }
+
                             Console.WriteLine(decisionMassageSubLoop());
                             int des1 = Convert.ToInt32(Console.ReadLine());
-                            d2Flag = des1 != 1;
+
+                            d2Flag = des1 == 1;
                                 
 
                         }
@@ -230,7 +232,7 @@ namespace QBS_training
                             Console.WriteLine(decisionMassageSubLoop());
                             int des2 = Convert.ToInt32(Console.ReadLine());
                            
-                            d3Flag = des2 != 1;
+                            d3Flag = des2 == 1;
                         }
                         break;
 
@@ -240,7 +242,7 @@ namespace QBS_training
                 Console.WriteLine(decisionMassageMainLoop());
                 int des = Convert.ToInt32(Console.ReadLine());
 
-                flag = des != 1;
+                flag = des == 1;
                
 
             }
