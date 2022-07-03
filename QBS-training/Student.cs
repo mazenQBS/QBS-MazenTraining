@@ -224,7 +224,7 @@ namespace QBS_training
         string _Name;
         int _mark;
 
-        List<Subject> _sbjlist = new List<Subject>();
+        public List<Subject> sbjList = new List<Subject>();
         public Subject() { }
 
         /// <summary>
@@ -250,7 +250,7 @@ namespace QBS_training
         /// <summary>
         /// this methode to set and get value of subject list
         /// </summary>
-        public List<Subject> sbjList { get; set; }
+        //public List<Subject> sbjList { get; set; }
 
         /// <summary>
         /// It adds a subject and the name of the subject =sbjName and sets the zero mark as the default value
@@ -289,7 +289,7 @@ namespace QBS_training
         /// Or we can say the number of subject
         /// </summary>
         /// <returns></returns>
-        public int length() { return _sbjlist.Count; }
+        public int length() { return sbjList.Count; }
 
         /// <summary>
         /// return the index as int location in subject list based on the name
@@ -353,8 +353,8 @@ namespace QBS_training
     }
 
     class ClassRoom {
-        //Subject _subjects = new Subject();
-        //List<Student> _students = new List<Student>();
+        public Subject subjects = new Subject();
+        List<Student> students = new List<Student>();
         public ClassRoom() {
             CRname = "";
         }
@@ -378,9 +378,9 @@ namespace QBS_training
         /// <summary>
         /// this methode to set and get value of Science subjects
         /// </summary
-        public Subject subjects{get;set;}
+        //public Subject subjects{get;set;}
 
-        public List<Student> students { get; set; }
+        //public List<Student> students { get; set; }
 
         /// <summary>
         /// This method add subject to specific student 

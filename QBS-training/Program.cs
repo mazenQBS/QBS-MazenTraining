@@ -29,8 +29,8 @@ namespace QBS_training
             return  "press 1 to add class Student\n" +
                     "press 2 to delete Student\n" +
                     "press 3 to Edit Student name\n" +
-                    "press 5 to Edit Student mark\n" +
-                    "press 4 to Print student details\n"
+                    "press 4 to Edit Student mark\n" +
+                    "press 5 to Print student details\n"
                    ;
 
         }
@@ -59,6 +59,16 @@ namespace QBS_training
 
 
             School s1 = new School("QBS");
+
+            ///////////////////////////////////////////////////////////////////////
+            s1.addClassRoom("a");
+            s1.addSubjectToClassRoom("a","math");
+            s1.addStudent("mazen","a");
+
+            
+
+
+            ///////////////////////////////////////////////////////////////////////
 
 
             bool flag = true;
