@@ -54,17 +54,7 @@ namespace QBS_training
 
               ;
         }
-
-        static void printChefType(Chef chef) {
-
-            //Console.WriteLine(chef.PrintChefOfTheOrder());
         
-        }
-
-        static string typeOfFood() {
-            return "1-italian food\n 2-indian food\n 3-arabic food\n";
-        }
-
         static void toStudent() { 
         
         
@@ -267,93 +257,8 @@ namespace QBS_training
 
             }
 
-
-
-
-
-
-            /*
-             * 
-            List < Student > std= new List<Student>();
-            bool flag = true;
-            int numvberOfStudent = 0;
-
-            Console.WriteLine("Hello \n" + decisionMassage());
-
-            while (flag)
-                switch (Console.ReadLine())
-                {
-                    case "1":
-                        Console.Write("Enter student name : ");
-                        string stdname = Console.ReadLine();
-                       // Student newStudent = new Student(stdname);
-                       // std.Add(newStudent);
-                        std[numvberOfStudent].fill();
-                        numvberOfStudent++;
-                        Console.WriteLine(decisionMassage());
-                        break;
-
-                    case "q":
-                        foreach (Student x in std) 
-                        {
-                            Console.WriteLine(x.titel()) ;
-                            Console.WriteLine(x.print()) ;
-                        }
-                        
-                        Console.WriteLine(Student.topStudent(std));
-                        flag = false;
-                        break;
-
-
-                    default:
-                        Console.WriteLine("wrong answer \n" + decisionMassage());
-                        break;
-                }
-
-             */
-
-        
-        
-        
-        
         
         }
-
-       /* static void toChef_old() {
-
-            ItalianChef chef1 = new ItalianChef();
-
-            IndianChef chef2 = new IndianChef();
-
-            ArabicChef chef3 = new ArabicChef();
-
-
-            bool flag = true;
-            while (flag)
-            {
-
-                Console.WriteLine("Choose a type of food\n " + typeOfFood());
-                int des = Convert.ToInt32(Console.ReadLine());
-                switch (des)
-                {
-
-                    case 1:
-                        printChefType(chef1);
-                        break;
-                    case 2:
-                        printChefType(chef2);
-                        break;
-                    case 3:
-                        printChefType(chef3);
-                        break;
-                }
-                Console.WriteLine(decisionMassageMainLoop());
-                int des2 = Convert.ToInt32(Console.ReadLine());
-                flag = des2 == 1;
-
-            }
-
-        }*/
 
         static void toChef() {
             ChefUserControl chef = new ChefUserControl();
@@ -363,11 +268,11 @@ namespace QBS_training
 
 
             chef.User_Menu.Object_Driver = inChef;
-            chef.User_Menu.Add_Choice(1, "indian food");
+            chef.User_Menu.Add_Choice( 1, new StringBuilder("indian food") );
             chef.User_Menu.Object_Driver = arChef;
-            chef.User_Menu.Add_Choice(2, "arabic food");
+            chef.User_Menu.Add_Choice( 2, new StringBuilder("arabic food") );
             chef.User_Menu.Object_Driver = itChef;
-            chef.User_Menu.Add_Choice(3, "italian food");
+            chef.User_Menu.Add_Choice( 3, new StringBuilder("italian food") );
 
             Console.WriteLine(chef.User_Menu.ToString());
             Console.Write("Choose the type of food you like : ");

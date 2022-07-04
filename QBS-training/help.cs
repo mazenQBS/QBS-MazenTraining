@@ -3,39 +3,28 @@ using System.Collections.Generic;
 using System.Text;
 using QBS_training_restaurant;
 
-namespace QBS_training_help
+namespace QBS_training_Help
 {
+#pragma warning disable S1118 // Utility classes should not have public constructors
     public class Help
     {
-        public static string space(string word, int totalSize)
-        {
-            string result = "";
-            int spaceSize = totalSize - word.Length;
+        public static int Space(StringBuilder word, int totalSize)
+            {  return totalSize - word.Length;  }
 
-            for (int i = 0; i < spaceSize; i++) {
-                result += " ";
-            }
+        public static int  Half_Space(StringBuilder word, int totalSize) {         
+            return totalSize - word.Length;
+              }
+        public static StringBuilder Done_Message_Format(StringBuilder messag) {
+
+
+            StringBuilder result = new StringBuilder();
+            result.AppendLine()
+                  .Append("****************************************************************************************************")
+                  .Append(' ', Half_Space(messag, 100))                  
+                  .Append(messag)
+                  .AppendLine()
+                  .Append("****************************************************************************************************");            
             return result;
-        }
-
-        public static string halfSpace(string word, int totalSize) {
-            string result = "";
-            int spaceSize = totalSize - word.Length;
-
-            for (int i = 0; i < (spaceSize / 2); i++)
-            {
-                result += " ";
-            }
-            return result;
-
-        }
-        public static string doneMessageFormat(string messag) {
-
-            string resut;
-            resut = "\n****************************************************************************************************\n";
-            resut += halfSpace(messag, 100);
-            resut += messag + "\n****************************************************************************************************\n";
-            return resut;
         }
     }
 
