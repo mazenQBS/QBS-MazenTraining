@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Globalization;
 using QBS_training_School;
@@ -373,19 +374,14 @@ namespace QBS_training
             int choice = Convert.ToInt32(Console.ReadLine());
 
 
-            Console.WriteLine(
-                chef.Get_Object(choice).Print_Chef_Of_The_Order()
-            );
+            Console.WriteLine( chef.Get_Object(choice).Print_Chef_Of_The_Order() );
 
         }
 
         static void Main(string[] args)
         {
 
-
-           toChef();
-
-           
+            toChef();
             
 
 
