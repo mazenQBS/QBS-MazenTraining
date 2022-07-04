@@ -361,20 +361,20 @@ namespace QBS_training
             Chef itChef = new ItalianChef();
 
 
-            chef.userMenu.objectDriver = inChef;
-            chef.userMenu.addChoice(1, "indian food");
-            chef.userMenu.objectDriver = arChef;
-            chef.userMenu.addChoice(2, "arabic food");
-            chef.userMenu.objectDriver = itChef;
-            chef.userMenu.addChoice(3, "italian food");
+            chef.User_Menu.Object_Driver = inChef;
+            chef.User_Menu.Add_Choice(1, "indian food");
+            chef.User_Menu.Object_Driver = arChef;
+            chef.User_Menu.Add_Choice(2, "arabic food");
+            chef.User_Menu.Object_Driver = itChef;
+            chef.User_Menu.Add_Choice(3, "italian food");
 
-            Console.WriteLine(chef.userMenu.ToString());
+            Console.WriteLine(chef.User_Menu.ToString());
             Console.Write("Choose the type of food you like : ");
             int choice = Convert.ToInt32(Console.ReadLine());
 
 
             Console.WriteLine(
-                chef.userMenu.userMenuList[chef.userMenu.indexOf(choice)].objectDriver.PrintChefOfTheOrder()
+                chef.Get_Object(choice).Print_Chef_Of_The_Order()
             );
 
         }

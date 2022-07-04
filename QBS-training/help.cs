@@ -5,7 +5,7 @@ using QBS_training_restaurant;
 
 namespace QBS_training_help
 {
-    public class help
+    public class Help
     {
         public static string space(string word, int totalSize)
         {

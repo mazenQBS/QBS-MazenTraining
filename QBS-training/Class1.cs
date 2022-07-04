@@ -106,111 +106,94 @@ namespace QBS_training_restaurant
     //}
 
 
-    interface UserMenu {
-        public void addChoice(object userChoice, string choiceTitle);
-        public void deleteChoice(object userChoice);
-        public int indexOf(object userChoice);
+    interface IUserMenu {
+        public void Add_Choice(object userChoice, string choiceTitle);
+        public void Delete_Choice(object userChoice);
+        public int IndexOf(object userChoice);
 
     }
 
     abstract class Chef
     {
-        string _chifName;
-        string _foodPlate;
-
-        public string chifName { get { return _chifName; } set { _chifName = value; } }
-        public string foodPlate { get { return _foodPlate; } set { _foodPlate = value; } }        
-        public abstract string PrintChefOfTheOrder();
+        public string Chif_name { get; set; }
+        public string Food_Plate { get; set; }
+        public abstract string Print_Chef_Of_The_Order();
 
 
     }
 
     class ChefUserControl { 
-        public ChefUserMenu _userMenu;
-        public ChefUserControl() { userMenu = new ChefUserMenu(); }
-
-        public ChefUserMenu userMenu { get { return _userMenu; } set{ _userMenu=value; }}
+        public ChefUserMenu User_Menu { get; set; }
+        public ChefUserControl() { User_Menu = new ChefUserMenu(); }
+        public Chef Get_Object(int choice) {
+            return User_Menu.User_Menu_List[User_Menu.IndexOf(choice)].Object_Driver;
+        }
+        
     }
 
-    class ChefUserMenu :UserMenu
+    class ChefUserMenu :IUserMenu
     {
-        object _userChoice;
-        string _title;
-        Chef _objectDriver;
-        List<ChefUserMenu> _userMenuList;
-
-
         public ChefUserMenu()
         {
-            userChoice = -1;
-            objectDriver = null;
-            userMenuList = new List<ChefUserMenu>();
-            title = "";
-        }
-        //ChefPrint
+            User_Choice = -1;
+            Object_Driver = null;
+            User_Menu_List = new List<ChefUserMenu>();
+            Title = "";
+        }        
         public ChefUserMenu(object userChoice, string choiceTitle, Chef objectDriver)
         {
-            this.userChoice = userChoice;
-            _objectDriver = objectDriver;
-            userMenuList = new List<ChefUserMenu>();
-            title = choiceTitle;
+            User_Choice = userChoice;
+            Object_Driver = objectDriver;
+            User_Menu_List = new List<ChefUserMenu>();
+            Title = choiceTitle;
         }
-
-        public object userChoice { get { return _userChoice; } set { _userChoice = value; } }
-
-        public Chef objectDriver { get { return _objectDriver; } set { _objectDriver = value; } }
-
-        public List<ChefUserMenu> userMenuList { get { return _userMenuList; } set { _userMenuList = value; } }
-
-        public string title { get { return _title; } set { _title = value; } }
-
-        //ChefPrint
-        public void addChoice(object userChoice, string choiceTitle)
+        public object User_Choice { get; set; }
+        public Chef Object_Driver { get; set; }
+        public List<ChefUserMenu> User_Menu_List { get; set; }
+        public string Title { get ; set ; }
+        public void Add_Choice(object userChoice, string choiceTitle)
         {
-            if (objectDriver == null)
+            if (Object_Driver == null)
             { Console.WriteLine("Error : objectDriver = null"); }
             else { 
-            ChefUserMenu newItem = new ChefUserMenu(userChoice, choiceTitle, objectDriver);
-            userMenuList.Add(newItem);
+            ChefUserMenu newItem = new ChefUserMenu(userChoice, choiceTitle, Object_Driver);
+            User_Menu_List.Add(newItem);
                 }
         }
-
-        public void deleteChoice(object userChoice)
+        public void Delete_Choice(object userChoice)
         {
 
-            int index = indexOf(userChoice);
+            int index = IndexOf(userChoice);
             if (index == -1)
             {
                 Console.WriteLine("this choice not exist");
             }
             else
             {
-                userMenuList.RemoveAt(index);
+                User_Menu_List.RemoveAt(index);
                 Console.WriteLine("this choice is deleted");
 
             }
 
         }
-
-        public int indexOf(object userChoice)
+        public int IndexOf(object userChoice)
         {
 
             int i;
-            for (i = 0; i < userMenuList.Count; i++)
+            for (i = 0; i < User_Menu_List.Count; i++)
             {
-                if (userChoice.ToString() == userMenuList[i].userChoice.ToString())
+                if (userChoice.ToString() == User_Menu_List[i].User_Choice.ToString())
                 { return i; }
             }
             return -1;
         }
-
         public override string ToString()
         {
 
             string result = "";
-            foreach (ChefUserMenu x in userMenuList)
+            foreach (ChefUserMenu x in User_Menu_List)
             {
-                result += x.userChoice + "- " + x.title + "\n";
+                result += x.User_Choice + "- " + x.Title + "\n";
             }
             return result;
         }
@@ -219,25 +202,25 @@ namespace QBS_training_restaurant
 
     class ItalianChef :Chef
     {
-        public override string PrintChefOfTheOrder()
+        public override string Print_Chef_Of_The_Order()
         {
-            return help.doneMessageFormat("The order is prepared by a chef who is an expert in the Italian dish");
+            return Help.doneMessageFormat("The order is prepared by a chef who is an expert in the Italian dish");
         }
     }
 
     class IndianChef :Chef
     {
-        public override string PrintChefOfTheOrder()
+        public override string Print_Chef_Of_The_Order()
         {
-            return help.doneMessageFormat ("The order is prepared by a chef who is an expert in the Indian dish");
+            return Help.doneMessageFormat ("The order is prepared by a chef who is an expert in the Indian dish");
         }
     }
 
     class ArabicChef :Chef
     {
-        public override string PrintChefOfTheOrder()
+        public override string Print_Chef_Of_The_Order()
         {
-            return help.doneMessageFormat ("The order is prepared by an expert chef in the Arabic dish");
+            return Help.doneMessageFormat ("The order is prepared by an expert chef in the Arabic dish");
         }
 
     }
