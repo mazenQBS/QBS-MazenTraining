@@ -107,31 +107,34 @@ namespace QBS_training_restaurant
         //}
 
     
-    public class Chef
+    public abstract class Chef
     {
         string _chifName;
         string _foodPlate;
-        public ChefUserMenu userMenu;
 
-        public Chef() { userMenu = new ChefUserMenu(); }
         public string chifName { get { return _chifName; } set { _chifName = value; } }
         public string foodPlate { get { return _foodPlate; } set { _foodPlate = value; } }
-        public virtual string PrintChefOfTheOrder() {
-            return "";
-        }
+        public abstract string PrintChefOfTheOrder();
 
 
 
     }
 
-    class italianChef :Chef
+    class ChefUserControl { 
+        public ChefUserMenu _userMenu;
+        public ChefUserControl() { userMenu = new ChefUserMenu(); }
+
+        public ChefUserMenu userMenu { get { return _userMenu; } set{ _userMenu=value; }}
+    }
+
+    class ItalianChef :Chef
     {
         public override string PrintChefOfTheOrder()
         {
             return help.doneMessage("The order is prepared by a chef who is an expert in the Italian dish");
         }
     }
-    class indianChef :Chef
+    class IndianChef :Chef
     {
         public override string PrintChefOfTheOrder()
         {
@@ -139,7 +142,7 @@ namespace QBS_training_restaurant
         }
     }
 
-    class arabicChef :Chef
+    class ArabicChef :Chef
     {
         public override string PrintChefOfTheOrder()
         {
@@ -150,6 +153,7 @@ namespace QBS_training_restaurant
 
 
 
+    
 
 
 

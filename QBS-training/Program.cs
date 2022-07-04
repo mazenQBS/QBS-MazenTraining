@@ -320,11 +320,11 @@ namespace QBS_training
 
         static void toChef_old() {
 
-            italianChef chef1 = new italianChef();
+            ItalianChef chef1 = new ItalianChef();
 
-            indianChef chef2 = new indianChef();
+            IndianChef chef2 = new IndianChef();
 
-            arabicChef chef3 = new arabicChef();
+            ArabicChef chef3 = new ArabicChef();
 
 
             bool flag = true;
@@ -355,10 +355,10 @@ namespace QBS_training
         }
 
         static void toChef() {
-            Chef chef = new Chef();
-            indianChef inChef = new indianChef();
-            arabicChef arChef = new arabicChef();
-            italianChef itChef = new italianChef();
+            ChefUserControl chef = new ChefUserControl();
+            Chef inChef = new IndianChef();
+            Chef arChef = new ArabicChef();
+            Chef itChef = new ItalianChef();
 
 
 
@@ -381,8 +381,9 @@ namespace QBS_training
         {
 
 
-            toChef();
-            
+           toChef();
+
+           
             
 
 
