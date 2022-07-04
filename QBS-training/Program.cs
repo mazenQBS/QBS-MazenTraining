@@ -56,7 +56,7 @@ namespace QBS_training
 
         static void printChefType(Chef chef) {
 
-            Console.WriteLine(chef.PrintChefOfTheOrder());
+            //Console.WriteLine(chef.PrintChefOfTheOrder());
         
         }
 
@@ -318,7 +318,7 @@ namespace QBS_training
         
         }
 
-        static void toChef_old() {
+       /* static void toChef_old() {
 
             ItalianChef chef1 = new ItalianChef();
 
@@ -352,7 +352,7 @@ namespace QBS_training
 
             }
 
-        }
+        }*/
 
         static void toChef() {
             ChefUserControl chef = new ChefUserControl();
@@ -361,10 +361,12 @@ namespace QBS_training
             Chef itChef = new ItalianChef();
 
 
-
-            chef.userMenu.addChoice(1, "indian food", inChef);
-            chef.userMenu.addChoice(2, "arabic food", arChef);
-            chef.userMenu.addChoice(3, "italian food", itChef);
+            chef.userMenu.objectDriver = inChef;
+            chef.userMenu.addChoice(1, "indian food");
+            chef.userMenu.objectDriver = arChef;
+            chef.userMenu.addChoice(2, "arabic food");
+            chef.userMenu.objectDriver = itChef;
+            chef.userMenu.addChoice(3, "italian food");
 
             Console.WriteLine(chef.userMenu.ToString());
             Console.Write("Choose the type of food you like : ");
