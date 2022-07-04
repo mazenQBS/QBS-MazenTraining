@@ -107,15 +107,20 @@ namespace QBS_training_restaurant
         //}
 
     
-    class Chef
+    public class Chef
     {
         string _chifName;
         string _foodPlate;
+        public ChefUserMenu userMenu;
+
+        public Chef() { userMenu = new ChefUserMenu(); }
         public string chifName { get { return _chifName; } set { _chifName = value; } }
         public string foodPlate { get { return _foodPlate; } set { _foodPlate = value; } }
         public virtual string PrintChefOfTheOrder() {
             return "";
         }
+
+
 
     }
 
@@ -142,5 +147,21 @@ namespace QBS_training_restaurant
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

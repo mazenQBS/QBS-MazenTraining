@@ -318,7 +318,7 @@ namespace QBS_training
         
         }
 
-        static void toChef() {
+        static void toChef_old() {
 
             italianChef chef1 = new italianChef();
 
@@ -354,12 +354,36 @@ namespace QBS_training
 
         }
 
+        static void toChef() {
+            Chef chef = new Chef();
+            indianChef inChef = new indianChef();
+            arabicChef arChef = new arabicChef();
+            italianChef itChef = new italianChef();
+
+
+
+            chef.userMenu.addChoice(1, "indian food", inChef);
+            chef.userMenu.addChoice(2, "arabic food", arChef);
+            chef.userMenu.addChoice(3, "italian food", itChef);
+
+            Console.WriteLine(chef.userMenu.ToString());
+            Console.Write("Choose the type of food you like : ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+
+            Console.WriteLine(
+                chef.userMenu.userMenuList[chef.userMenu.indexOf(choice)].objectDriver.PrintChefOfTheOrder()
+            );
+
+        }
+
         static void Main(string[] args)
         {
 
+
             toChef();
-
-
+            
+            
 
 
         }
