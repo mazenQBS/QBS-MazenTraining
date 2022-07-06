@@ -6,4 +6,10 @@
     <RootNamespace>QBS_training</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="chef1\**" />
+    <EmbeddedResource Remove="chef1\**" />
+    <None Remove="chef1\**" />
+  </ItemGroup>
+
 </Project>

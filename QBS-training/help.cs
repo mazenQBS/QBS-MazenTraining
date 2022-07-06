@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using QBS_training_restaurant;
+﻿using System.Text;
+
 
 namespace QBS_training_Help
 {
@@ -19,6 +17,7 @@ namespace QBS_training_Help
             StringBuilder result = new StringBuilder();
             result.AppendLine()
                   .Append("****************************************************************************************************")
+                  .AppendLine()
                   .Append(' ', HalfSpaceSize(messag, 100))                  
                   .Append(messag)
                   .AppendLine()

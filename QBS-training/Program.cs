@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Text;
-using System.Collections.Generic;
-using System.Globalization;
+using QBS_training.ChefFile;
 using QBS_training_School;
-using QBS_training_restaurant;
+
 
 namespace QBS_training
 {
      class Program
     {
         protected Program() { }
-        static string decisionMassageAll() {
+        static string DecisionMassageAll() {
             return  "press 1 to class room\n" +
                     "press 2 to stydent";
         }
-        static string decisionMassageClassRoom()
+        static string DecisionMassageClassRoom()
         {
             return "press 1 to add classroom\n" +
                     "press 2 to delet classroom\n" +
@@ -27,7 +26,7 @@ namespace QBS_training
 
         }
 
-        static string decisionMassageStudent()
+        static string DecisionMassageStudent()
         {
             return  "press 1 to add Student\n" +
                     "press 2 to delete Student\n" +
@@ -38,7 +37,7 @@ namespace QBS_training
 
         }
 
-        static string decisionMassageSubLoop() {
+        static string DecisionMassageSubLoop() {
             return 
                "press 1 to show list again\n" +
                "press any thing else to Back to main menu\n" 
@@ -46,7 +45,7 @@ namespace QBS_training
               ;
         }
 
-        static string decisionMassageMainLoop()
+        static string DecisionMassageMainLoop()
         {
             return
                "press 1 to show list again\n" +
@@ -55,7 +54,7 @@ namespace QBS_training
               ;
         }
         
-        static void toStudent() { 
+        static void ToStudent() { 
         
         
          
@@ -74,7 +73,7 @@ namespace QBS_training
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine(decisionMassageAll());
+                Console.WriteLine(DecisionMassageAll());
                 int decision = Convert.ToInt32(Console.ReadLine());
 
                 switch (decision)
@@ -85,7 +84,7 @@ namespace QBS_training
                         bool d2Flag = true;
                         while (d2Flag)
                         {
-                            Console.WriteLine(decisionMassageClassRoom());
+                            Console.WriteLine(DecisionMassageClassRoom());
                             int decision2 = Convert.ToInt32(Console.ReadLine());
                         
                             switch (decision2)
@@ -156,7 +155,7 @@ namespace QBS_training
 
                             }
 
-                            Console.WriteLine(decisionMassageSubLoop());
+                            Console.WriteLine(DecisionMassageSubLoop());
                             int des1 = Convert.ToInt32(Console.ReadLine());
 
                             d2Flag = des1 == 1;
@@ -169,7 +168,7 @@ namespace QBS_training
                         bool d3Flag = true;
                         while (d3Flag)
                         {
-                            Console.WriteLine(decisionMassageStudent());
+                            Console.WriteLine(DecisionMassageStudent());
                             int decision3 = Convert.ToInt32(Console.ReadLine());
 
                             switch (decision3)
@@ -239,7 +238,7 @@ namespace QBS_training
                                     break;//end case 4
                             }
 
-                            Console.WriteLine(decisionMassageSubLoop());
+                            Console.WriteLine(DecisionMassageSubLoop());
                             int des2 = Convert.ToInt32(Console.ReadLine());
                            
                             d3Flag = des2 == 1;
@@ -249,7 +248,7 @@ namespace QBS_training
 
                 }
 
-                Console.WriteLine(decisionMassageMainLoop());
+                Console.WriteLine(DecisionMassageMainLoop());
                 int des = Convert.ToInt32(Console.ReadLine());
 
                 flag = des == 1;
@@ -260,7 +259,7 @@ namespace QBS_training
         
         }
 
-        static void toChef() {
+        static void ToChef() {
             ChefUserControl chef = new ChefUserControl();
             Chef inChef = new IndianChef();
             Chef arChef = new ArabicChef();
@@ -279,17 +278,19 @@ namespace QBS_training
             int choice = Convert.ToInt32(Console.ReadLine());
 
 
-            Console.WriteLine( chef.Get_Object(choice).ToStringChefResponsible() );
+            Console.WriteLine( chef.GetObject(choice).ToStringChefResponsible() );
 
         }
 
         static void Main(string[] args)
         {
 
-            toChef();
+            ToChef();
             
 
 
         }
     }
+
+     
 }
