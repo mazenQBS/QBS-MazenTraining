@@ -3,31 +3,6 @@
 
 namespace QBS_training.SchoolFile
 {
-    public class StudentInfo
-    {
-        public StudentInfo(string studentName, string belongsClassroom)
-        {
-            StudentName = studentName;
-            BelongsClassroom = belongsClassroom;
-        }
-
-        public string StudentName { get; private set; }
-        public string BelongsClassroom { get; private set; }
-    }
-
-
-    public class SubjectInfo
-    {
-        public SubjectInfo(string classroomName, string subjectName)
-        {
-            ClassroomName = classroomName;
-            SubjectName = subjectName;
-        }
-
-        public string ClassroomName { get; private set; }
-        public string SubjectName { get; private set; }
-    }
-
     public class School
     {
         private List<Classroom> _classrooms;
@@ -97,14 +72,14 @@ namespace QBS_training.SchoolFile
         public void EditStudentName(StudentInfo studentInfo, string newStudentName)
         {
             var student = _classrooms[IndexOfClassroom(studentInfo.BelongsClassroom)].GetStudent(studentInfo.StudentName);
-            student .Name = newStudentName;
+            student.Name = newStudentName;
         }
         public void EditStudentMark(StudentInfo studentInfo, string subjectName, int subjectMark)
         {
             var student = _classrooms[IndexOfClassroom(studentInfo.BelongsClassroom)]
                 .GetStudent(studentInfo.StudentName);
-            
-            student.SetMark(subjectName,subjectMark);
+
+            student.SetMark(subjectName, subjectMark);
         }
         public string ToStringClassroomsDetails(string classroomName)
         {
