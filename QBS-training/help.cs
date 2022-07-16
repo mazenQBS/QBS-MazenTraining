@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
+using QBS_training.SchoolFile;
 
 
 namespace QBS_training_Help
@@ -23,6 +25,11 @@ namespace QBS_training_Help
                   .AppendLine()
                   .Append("****************************************************************************************************");            
             return result;
+        }
+
+        public static bool isEmptyList<T>(List<T> std)
+        {
+            return std == null;
         }
     }
 
