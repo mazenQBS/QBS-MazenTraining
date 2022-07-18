@@ -2,13 +2,17 @@
 {
     public class StudentInfo
     {
+        public StudentInfo()
+        {
+        }
+
         public StudentInfo(string studentName, string belongsClassroom)
         {
             StudentName = studentName;
             BelongsClassroom = belongsClassroom;
         }
 
-        public string StudentName { get; private set; }
-        public string BelongsClassroom { get; private set; }
+        public string StudentName { get;  set; }
+        public string BelongsClassroom { get;  set; }
     }
 }
